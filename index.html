@@ -395,32 +395,51 @@ footer {
   .sobre-grid { grid-template-columns: 1fr; }
   .contato-grid { grid-template-columns: 1fr; }
   .ft-top { grid-template-columns: 1fr 1fr; gap: 32px; }
+  .servicos-grid { grid-template-columns: 1fr 1fr; }
 }
 @media (max-width: 768px) {
   .nav-links { display: none; }
   .nav-links.open {
     display: flex; flex-direction: column; align-items: flex-start;
-    position: fixed; top: 68px; left: 0; right: 0;
-    background: var(--navy2); padding: 16px 24px; gap: 4px;
+    position: fixed; top: 68px; left: 0; right: 0; z-index: 499;
+    background: var(--navy2); padding: 20px 24px; gap: 4px;
     border-bottom: 1px solid rgba(255,255,255,0.1);
+    box-shadow: 0 8px 32px rgba(0,0,0,0.3);
   }
+  .nav-links.open li { width: 100%; }
+  .nav-links.open a { display: block; padding: 12px 16px; font-size: 0.9rem; border-radius: 4px; }
+  .nav-links.open .cta { margin-top: 8px; text-align: center; }
   .hamburger { display: flex; }
-  .cards3 { grid-template-columns: 1fr; }
+  .hamburger.active span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+  .hamburger.active span:nth-child(2) { opacity: 0; }
+  .hamburger.active span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+  .servicos-grid { grid-template-columns: 1fr; }
   .reg-cards { grid-template-columns: 1fr; }
   .atuacao { grid-template-columns: 1fr; }
   .fg-row { grid-template-columns: 1fr; }
-  .form-box { padding: 28px 22px; }
-  .online-banner { flex-direction: column; align-items: flex-start; }
-  .tabs-header { flex-direction: column; align-items: flex-start; }
-  .ft-top { grid-template-columns: 1fr; gap: 28px; }
-  .sec { padding: 72px 5%; }
-  #hero { padding: 100px 5% 72px; }
-  .strip-inner { justify-content: flex-start; }
+  .form-box { padding: 28px 20px; }
+  .online-banner { flex-direction: column; align-items: flex-start; padding: 28px 24px; }
+  .ft-top { grid-template-columns: 1fr 1fr; gap: 28px; }
+  .sec { padding: 64px 5%; }
+  #hero { padding: 100px 5% 64px; }
+  .strip-inner { justify-content: flex-start; gap: 16px; }
+  .strip-item { font-size: 0.72rem; }
+  .stabs { flex-wrap: wrap; }
+  .hero-title { font-size: 2.2rem; }
+  .sobre-imgbox { aspect-ratio: 16/7; }
+  h2.sh { font-size: 1.7rem; }
+  .btn-hero { width: 100%; justify-content: center; }
 }
 @media (max-width: 480px) {
-  .hero-stats { gap: 0; flex-wrap: nowrap; }
-  .hstat-num { font-size: 1.4rem; }
-  .hstat-sep { display: none; }
+  .ft-top { grid-template-columns: 1fr; gap: 24px; }
+  .hero-title { font-size: 1.9rem; }
+  .reg-cards { grid-template-columns: 1fr; }
+  .contato-grid { gap: 40px; }
+  .cinfo-item { padding: 14px 0; }
+  .ft-verse p { font-size: 0.72rem; }
+  nav { padding: 0 5%; }
+  .logo { font-size: 0.95rem; }
+  .logo-box { width: 28px; height: 28px; font-size: 0.55rem; }
 }
 </style>
 </head>
@@ -641,7 +660,7 @@ footer {
         <div class="cinfo">
           <div class="cinfo-item">
             <div class="cinfo-icon">✉️</div>
-            <div><div class="cinfo-lbl">E-mail</div><div class="cinfo-val"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="70131f1e0411041f3017150304111f1613065e131f1d5e1202">[email&#160;protected]</a></div></div>
+            <div><div class="cinfo-lbl">E-mail</div><div class="cinfo-val">contato@gestaofcv.com.br</div></div>
           </div>
           <div class="cinfo-item">
             <div class="cinfo-icon">📞</div>
@@ -755,19 +774,32 @@ footer {
       <p class="ft-copy">contato@gestaofcv.com.br</p>
     </div>
     <div class="ft-verse">
-      <p>João 3:16 — ¹⁶ Porque Deus amou o mundo de tal maneira que deu o seu Filho unigênito, para que todo aquele que nele crê não pereça, mas tenha a vida eterna.</p>
+      <p>João 3:16 - Porque Deus amou o mundo de tal maneira que deu o seu Filho unigênito, para que todo aquele que nele crê não pereça, mas tenha a vida eterna.</p>
     </div>
   </div>
 </footer>
 
 <div id="toast"></div>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
 // Menu mobile
-const hambBtn = document.getElementById('hambBtn');
-const navLinks = document.getElementById('navLinks');
-hambBtn.addEventListener('click', () => navLinks.classList.toggle('open'));
-navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => navLinks.classList.remove('open')));
+document.addEventListener('DOMContentLoaded', function() {
+  var hambBtn = document.getElementById('hambBtn');
+  var navLinks = document.getElementById('navLinks');
+  if (hambBtn && navLinks) {
+    hambBtn.addEventListener('click', function() {
+      navLinks.classList.toggle('open');
+      var spans = hambBtn.querySelectorAll('span');
+      hambBtn.classList.toggle('active');
+    });
+    navLinks.querySelectorAll('a').forEach(function(a) {
+      a.addEventListener('click', function() {
+        navLinks.classList.remove('open');
+        hambBtn.classList.remove('active');
+      });
+    });
+  }
+});
 
 
 // Tabs de serviços — lógica idêntica à v2
@@ -775,18 +807,4 @@ document.querySelectorAll('.tab-btn').forEach(function(btn) {
   btn.addEventListener('click', function() {
     var tab = btn.getAttribute('data-tab');
     document.querySelectorAll('.tab-btn').forEach(function(b) { b.classList.remove('active'); });
-    document.querySelectorAll('.servicos-content').forEach(function(c) { c.classList.remove('active'); });
-    btn.classList.add('active');
-    document.getElementById('tab-' + tab).classList.add('active');
-  });
-});
-
-
-// Formulário
-const form = document.getElementById('cf');
-const sendBtn = document.getElementById('sendBtn');
-const toast = document.getElementById('toast');
-
-function showToast(msg, ok) {
-  toast.textContent = msg;
-  toast.style.borderLeftColor = ok ? '
+    
