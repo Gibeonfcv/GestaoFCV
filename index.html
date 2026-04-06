@@ -379,6 +379,14 @@ footer {
 .ft-bottom { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; }
 .ft-copy { font-size: 0.75rem; color: rgba(255,255,255,0.2); font-weight: 300; }
 .ft-copy strong { color: rgba(255,255,255,0.4); font-weight: 600; }
+.ft-verse {
+  text-align: center; padding-top: 20px; margin-top: 16px;
+  border-top: 1px solid rgba(255,255,255,0.06);
+}
+.ft-verse p {
+  font-size: 0.78rem; color: rgba(255,255,255,0.25);
+  font-weight: 300; line-height: 1.7; font-style: italic;
+}
 
 /* ── RESPONSIVE ── */
 @media (max-width: 1024px) {
@@ -633,7 +641,7 @@ footer {
         <div class="cinfo">
           <div class="cinfo-item">
             <div class="cinfo-icon">✉️</div>
-            <div><div class="cinfo-lbl">E-mail</div><div class="cinfo-val">contato@gestaofcv.com.br</div></div>
+            <div><div class="cinfo-lbl">E-mail</div><div class="cinfo-val"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="70131f1e0411041f3017150304111f1613065e131f1d5e1202">[email&#160;protected]</a></div></div>
           </div>
           <div class="cinfo-item">
             <div class="cinfo-icon">📞</div>
@@ -746,12 +754,15 @@ footer {
       <p class="ft-copy">© 2025 <strong>Gestão FCV</strong> — Todos os direitos reservados.</p>
       <p class="ft-copy">contato@gestaofcv.com.br</p>
     </div>
+    <div class="ft-verse">
+      <p>João 3:16 — ¹⁶ Porque Deus amou o mundo de tal maneira que deu o seu Filho unigênito, para que todo aquele que nele crê não pereça, mas tenha a vida eterna.</p>
+    </div>
   </div>
 </footer>
 
 <div id="toast"></div>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
 // Menu mobile
 const hambBtn = document.getElementById('hambBtn');
 const navLinks = document.getElementById('navLinks');
@@ -778,15 +789,4 @@ const toast = document.getElementById('toast');
 
 function showToast(msg, ok) {
   toast.textContent = msg;
-  toast.style.borderLeftColor = ok ? '#2563EB' : '#ef4444';
-  toast.classList.add('show');
-  setTimeout(() => toast.classList.remove('show'), 5000);
-}
-
-form.addEventListener('submit', async (e) => {
-  e.preventDefault();
-  if (!form.nome.value.trim() || !form.email.value.trim() || !form.mensagem.value.trim()) {
-    showToast('⚠️ Preencha os campos obrigatórios.', false);
-    return;
-  }
-  sen
+  toast.style.borderLeftColor = ok ? '
