@@ -1,0 +1,792 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Gestão FCV — Finanças, Controladoria e Visão</title>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"/>
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --navy:    #08162B;
+  --navy2:   #0F2444;
+  --navy3:   #1A3A6E;
+  --blue:    #1E4FA8;
+  --blue2:   #2563EB;
+  --white:   #FFFFFF;
+  --offwhite:#F4F6FA;
+  --border:  #DDE3EF;
+  --text:    #08162B;
+  --muted:   #556275;
+  --light:   #8A9BB5;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Manrope', sans-serif;
+  color: var(--text);
+  background: var(--white);
+  overflow-x: hidden;
+}
+
+/* ── NAV ── */
+#nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 500;
+  height: 68px;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 7%;
+  background: rgba(8,22,43,0.98);
+  border-bottom: 1px solid rgba(255,255,255,0.07);
+}
+.logo {
+  display: flex; align-items: center; gap: 10px;
+  text-decoration: none; color: var(--white);
+  font-size: 1.05rem; font-weight: 800; letter-spacing: 0.02em;
+}
+.logo-box {
+  width: 32px; height: 32px; background: var(--blue);
+  display: grid; place-items: center;
+  font-size: 0.62rem; font-weight: 800; color: white; letter-spacing: 0.05em;
+}
+.nav-links { display: flex; align-items: center; gap: 4px; list-style: none; }
+.nav-links a {
+  text-decoration: none; color: rgba(255,255,255,0.6);
+  font-size: 0.78rem; font-weight: 600; letter-spacing: 0.06em;
+  text-transform: uppercase; padding: 8px 14px; border-radius: 2px;
+  transition: color 0.2s, background 0.2s;
+}
+.nav-links a:hover { color: white; background: rgba(255,255,255,0.07); }
+.nav-links .cta { background: var(--blue); color: white !important; }
+.nav-links .cta:hover { background: var(--blue2) !important; }
+.hamburger { display: none; background: none; border: none; cursor: pointer; padding: 6px; flex-direction: column; gap: 5px; }
+.hamburger span { display: block; width: 22px; height: 2px; background: white; transition: 0.3s; }
+
+/* ── HERO ── */
+#hero {
+  min-height: 100vh;
+  background: var(--navy);
+  display: flex; align-items: center;
+  padding: 100px 7% 80px;
+  position: relative; overflow: hidden;
+}
+.hero-grid-bg {
+  position: absolute; inset: 0; pointer-events: none;
+  background-image:
+    linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+  background-size: 64px 64px;
+}
+.hero-glow {
+  position: absolute; top: -15%; right: -8%; width: 650px; height: 650px;
+  background: radial-gradient(ellipse, rgba(30,79,168,0.3) 0%, transparent 70%);
+  pointer-events: none;
+}
+.hero-glow2 {
+  position: absolute; bottom: -20%; left: -5%; width: 450px; height: 450px;
+  background: radial-gradient(ellipse, rgba(30,79,168,0.12) 0%, transparent 70%);
+  pointer-events: none;
+}
+.hero-content {
+  position: relative; z-index: 2;
+  max-width: 800px; margin: 0 auto; width: 100%;
+}
+.hero-tag {
+  display: inline-flex; align-items: center; gap: 10px; margin-bottom: 28px;
+}
+.hero-tag-line { width: 28px; height: 2px; background: var(--blue2); }
+.hero-tag-text {
+  font-size: 0.7rem; font-weight: 700; letter-spacing: 0.18em;
+  text-transform: uppercase; color: rgba(255,255,255,0.45);
+}
+.hero-title {
+  font-size: clamp(2.4rem, 3.8vw, 3.8rem);
+  font-weight: 800; line-height: 1.12; color: white;
+  letter-spacing: -0.025em; margin-bottom: 24px;
+}
+.hero-sub {
+  font-size: 1.05rem; line-height: 1.8; color: rgba(255,255,255,0.5);
+  font-weight: 300; margin-bottom: 44px; max-width: 480px;
+}
+.hero-sub strong { color: rgba(255,255,255,0.8); font-weight: 600; }
+.btn-hero {
+  display: inline-flex; align-items: center; gap: 12px;
+  background: var(--blue); color: white;
+  padding: 16px 36px; border-radius: 2px;
+  font-family: 'Manrope', sans-serif; font-size: 0.85rem; font-weight: 700;
+  letter-spacing: 0.07em; text-transform: uppercase; text-decoration: none;
+  box-shadow: 0 4px 24px rgba(30,79,168,0.5);
+  transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
+}
+.btn-hero:hover { background: var(--blue2); transform: translateY(-2px); box-shadow: 0 8px 32px rgba(37,99,235,0.5); }
+.hero-stats {
+  display: flex; align-items: center; gap: 0;
+  margin-top: 44px; padding-top: 40px;
+  border-top: 1px solid rgba(255,255,255,0.1);
+}
+.hstat { flex: 1; text-align: center; }
+.hstat-num { font-size: 1.9rem; font-weight: 800; color: white; line-height: 1; }
+.hstat-lbl { font-size: 0.68rem; color: rgba(255,255,255,0.35); text-transform: uppercase; letter-spacing: 0.08em; margin-top: 5px; }
+.hstat-sep { width: 1px; height: 36px; background: rgba(255,255,255,0.1); }
+
+/* Hero panel */
+.hero-panel {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-top: 3px solid var(--blue);
+  padding: 32px;
+}
+.panel-label {
+  font-size: 0.65rem; letter-spacing: 0.14em; text-transform: uppercase;
+  color: rgba(255,255,255,0.3); font-weight: 700; margin-bottom: 20px;
+}
+.kpis { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: rgba(255,255,255,0.07); margin: 0 -32px; }
+.kpi { padding: 22px 26px; background: rgba(8,22,43,0.7); }
+.kpi-v { font-size: 1.7rem; font-weight: 800; color: white; line-height: 1; }
+.kpi-v sup { font-size: 0.9rem; color: rgba(255,255,255,0.4); }
+.kpi-n { font-size: 0.72rem; color: rgba(255,255,255,0.35); margin-top: 5px; line-height: 1.4; }
+.panel-bars { padding: 24px 32px 28px; border-top: 1px solid rgba(255,255,255,0.07); }
+.panel-bars-lbl { font-size: 0.62rem; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.25); font-weight: 700; margin-bottom: 14px; }
+.bars { display: flex; align-items: flex-end; gap: 7px; height: 56px; }
+.bar { flex: 1; border-radius: 2px 2px 0 0; background: rgba(30,79,168,0.45); transition: background 0.2s; }
+.bar:hover { background: rgba(37,99,235,0.75); }
+.bar.hi { background: rgba(37,99,235,0.8); }
+.panel-badge {
+  margin: 0 -32px -32px;
+  background: var(--blue2); color: white;
+  padding: 12px 32px;
+  font-size: 0.72rem; font-weight: 700; letter-spacing: 0.05em;
+  display: flex; align-items: center; gap: 8px;
+}
+.dot { width: 7px; height: 7px; background: #4ade80; border-radius: 50%; animation: blink 2s infinite; }
+@keyframes blink { 0%,100%{opacity:1} 50%{opacity:0.4} }
+
+/* ── STRIP ── */
+.strip {
+  background: var(--navy2);
+  border-top: 1px solid rgba(255,255,255,0.06);
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+  padding: 28px 7%;
+}
+.strip-inner {
+  max-width: 1140px; margin: 0 auto;
+  display: flex; align-items: center; justify-content: space-around; flex-wrap: wrap; gap: 24px;
+}
+.strip-item {
+  display: flex; align-items: center; gap: 10px;
+  font-size: 0.78rem; font-weight: 600; letter-spacing: 0.04em;
+  color: rgba(255,255,255,0.4); text-transform: uppercase;
+}
+.strip-item span { font-size: 1rem; }
+
+/* ── SHARED SECTION STYLES ── */
+.sec { padding: 96px 7%; }
+.inner { max-width: 1140px; margin: 0 auto; }
+.sec-tag { display: flex; align-items: center; gap: 10px; margin-bottom: 14px; }
+.sec-tag-line { width: 22px; height: 2px; background: var(--blue); }
+.sec-tag-text { font-size: 0.68rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--blue); }
+h2.sh {
+  font-size: clamp(1.8rem, 2.6vw, 2.5rem);
+  font-weight: 800; letter-spacing: -0.02em; line-height: 1.18; margin-bottom: 16px;
+}
+p.sl {
+  font-size: 1rem; line-height: 1.8; color: var(--muted);
+  font-weight: 300; max-width: 540px; margin-bottom: 56px;
+}
+
+/* ── SOBRE ── */
+#sobre { background: var(--white); }
+.sobre-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; }
+.mvv { display: grid; gap: 2px; }
+.mvv-card {
+  padding: 28px 32px;
+  background: var(--offwhite);
+  border-left: 3px solid transparent;
+  transition: border-color 0.25s, background 0.25s;
+}
+.mvv-card:hover { border-left-color: var(--blue); background: white; }
+.mvv-icon { font-size: 1.3rem; margin-bottom: 12px; }
+.mvv-card h3 { font-size: 0.82rem; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase; color: var(--navy); margin-bottom: 8px; }
+.mvv-card p { font-size: 0.9rem; line-height: 1.72; color: var(--muted); font-weight: 300; }
+.vtags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
+.vtag { border: 1px solid var(--border); padding: 4px 14px; border-radius: 100px; font-size: 0.76rem; font-weight: 600; color: var(--navy); }
+
+.sobre-right {}
+.sobre-imgbox {
+  width: 100%; aspect-ratio: 16/10;
+  background: linear-gradient(135deg, var(--navy) 0%, var(--navy2) 50%, var(--navy3) 100%);
+  display: flex; align-items: center; justify-content: center;
+  position: relative; overflow: hidden; margin-bottom: 2px;
+}
+.sobre-imgbox::after { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, var(--blue), var(--blue2)); }
+.sobre-logo-text { text-align: center; }
+.sobre-logo-big { font-size: 4.5rem; font-weight: 800; color: rgba(255,255,255,0.07); letter-spacing: 0.1em; }
+.sobre-logo-bar { width: 48px; height: 3px; background: var(--blue); margin: 12px auto; }
+.sobre-logo-sub { font-size: 0.72rem; letter-spacing: 0.16em; text-transform: uppercase; color: rgba(255,255,255,0.25); font-weight: 700; }
+
+.atuacao { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; }
+.atu {
+  background: var(--navy); padding: 26px 28px;
+}
+.atu h4 { font-size: 0.68rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(255,255,255,0.35); margin-bottom: 8px; }
+.atu p { font-size: 0.86rem; line-height: 1.65; color: rgba(255,255,255,0.65); font-weight: 300; }
+.atu-tag { display: inline-flex; align-items: center; gap: 6px; font-size: 0.68rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--blue2); margin-top: 10px; }
+
+/* ── SERVIÇOS ── */
+#servicos { background: var(--offwhite); }
+.tabs-header { display: flex; align-items: flex-end; justify-content: space-between; gap: 32px; flex-wrap: wrap; margin-bottom: 48px; }
+.tabs-header p.sl { margin-bottom: 0; }
+/* Tab panels - hidden by default, shown via :has() */
+.spane { display: none; }
+.stabs { display: flex; gap: 2px; background: var(--border); padding: 2px; border-radius: 3px; width: fit-content; margin-bottom: 40px; }
+.stabs label {
+  padding: 10px 22px; cursor: pointer;
+  font-family: 'Manrope', sans-serif; font-size: 0.78rem; font-weight: 700;
+  letter-spacing: 0.05em; text-transform: uppercase; color: var(--muted);
+  border-radius: 2px; transition: background 0.2s, color 0.2s; user-select: none;
+}
+.stabs label:hover { color: var(--navy); background: rgba(0,0,0,0.05); }
+/* Active tab highlight */
+section#servicos:has(#st1:checked) .stabs label[for="st1"],
+section#servicos:has(#st2:checked) .stabs label[for="st2"],
+section#servicos:has(#st3:checked) .stabs label[for="st3"] { background: var(--navy); color: white; }
+/* Show correct panel */
+section#servicos:has(#st1:checked) #sp1,
+section#servicos:has(#st2:checked) #sp2,
+section#servicos:has(#st3:checked) #sp3 { display: block; }
+.servicos-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 2px; }
+.scard {
+  background: white; padding: 36px 30px;
+  border-top: 3px solid transparent;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+.scard:hover { border-top-color: var(--blue); box-shadow: 0 10px 40px rgba(8,22,43,0.09); }
+.scard-num { font-size: 0.65rem; font-weight: 800; letter-spacing: 0.16em; color: var(--blue); margin-bottom: 18px; }
+.scard h3 { font-size: 1rem; font-weight: 700; margin-bottom: 12px; line-height: 1.3; }
+.scard p { font-size: 0.86rem; line-height: 1.72; color: var(--muted); font-weight: 300; }
+.scard-list { list-style: none; margin-top: 14px; display: grid; gap: 7px; }
+.scard-list li { display: flex; align-items: flex-start; gap: 8px; font-size: 0.8rem; color: var(--muted); line-height: 1.5; font-weight: 300; }
+.scard-list li::before { content: '—'; color: var(--blue); font-weight: 700; flex-shrink: 0; }
+
+/* ── REGIONAL ── */
+#regional { background: var(--navy); }
+#regional .sec-tag-text { color: rgba(255,255,255,0.4); }
+#regional .sec-tag-line { background: rgba(255,255,255,0.25); }
+#regional h2.sh { color: white; }
+#regional p.sl { color: rgba(255,255,255,0.4); }
+.reg-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; margin-bottom: 2px; }
+.rcard {
+  background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.07);
+  padding: 36px 30px;
+  transition: background 0.25s, border-color 0.25s;
+}
+.rcard:hover { background: rgba(255,255,255,0.07); border-color: rgba(30,79,168,0.5); }
+.rcard-bar { width: 40px; height: 3px; background: var(--blue); margin-bottom: 22px; }
+.rcard h3 { font-size: 1.2rem; font-weight: 800; color: white; margin-bottom: 10px; }
+.rcard p { font-size: 0.86rem; line-height: 1.72; color: rgba(255,255,255,0.4); font-weight: 300; margin-bottom: 18px; }
+.rtags { display: flex; flex-wrap: wrap; gap: 6px; }
+.rtag { border: 1px solid rgba(255,255,255,0.12); padding: 3px 12px; font-size: 0.68rem; font-weight: 600; color: rgba(255,255,255,0.35); letter-spacing: 0.04em; border-radius: 100px; }
+.online-banner {
+  background: var(--blue); padding: 36px 48px;
+  display: flex; align-items: center; justify-content: space-between; gap: 32px; flex-wrap: wrap;
+}
+.ob-text h3 { font-size: 1.1rem; font-weight: 800; color: white; margin-bottom: 6px; }
+.ob-text p { font-size: 0.88rem; color: rgba(255,255,255,0.65); font-weight: 300; }
+.btn-wh {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: white; color: var(--navy);
+  padding: 13px 28px; border-radius: 2px;
+  font-family: 'Manrope', sans-serif; font-size: 0.78rem; font-weight: 700;
+  letter-spacing: 0.07em; text-transform: uppercase; text-decoration: none; white-space: nowrap;
+  transition: background 0.2s;
+}
+.btn-wh:hover { background: var(--offwhite); }
+
+/* ── CONTATO ── */
+#contato { background: white; }
+.contato-grid { display: grid; grid-template-columns: 1fr 1.5fr; gap: 80px; align-items: start; }
+.contato-left p.sl { margin-bottom: 36px; }
+.cinfo { display: grid; gap: 0; }
+.cinfo-item {
+  display: flex; align-items: flex-start; gap: 16px;
+  padding: 18px 0; border-bottom: 1px solid var(--border);
+}
+.cinfo-item:first-child { border-top: 1px solid var(--border); }
+.cinfo-icon { width: 38px; height: 38px; min-width: 38px; background: var(--navy); display: grid; place-items: center; font-size: 0.85rem; border-radius: 2px; }
+.cinfo-lbl { font-size: 0.65rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--light); margin-bottom: 2px; }
+.cinfo-val { font-size: 0.9rem; font-weight: 500; color: var(--navy); }
+
+.form-box {
+  background: var(--offwhite); padding: 44px;
+  border-top: 3px solid var(--blue);
+}
+.form-box h3 { font-size: 1.15rem; font-weight: 800; letter-spacing: -0.01em; margin-bottom: 28px; }
+.fg { display: flex; flex-direction: column; gap: 6px; margin-bottom: 16px; }
+.fg label { font-size: 0.68rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--navy); }
+.fg input, .fg select, .fg textarea {
+  border: 1.5px solid var(--border); background: white; border-radius: 2px;
+  padding: 12px 14px; font-family: 'Manrope', sans-serif; font-size: 0.88rem; color: var(--navy);
+  outline: none; transition: border-color 0.2s;
+}
+.fg input:focus, .fg select:focus, .fg textarea:focus { border-color: var(--blue); }
+.fg textarea { min-height: 110px; resize: vertical; }
+.fg-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.fg-row .fg { margin-bottom: 0; }
+.btn-send {
+  width: 100%; background: var(--navy); color: white; border: none;
+  padding: 15px; border-radius: 2px;
+  font-family: 'Manrope', sans-serif; font-size: 0.82rem; font-weight: 700;
+  letter-spacing: 0.08em; text-transform: uppercase; cursor: pointer; margin-top: 6px;
+  transition: background 0.2s, transform 0.15s;
+}
+.btn-send:hover { background: var(--navy3); transform: translateY(-1px); }
+.btn-send:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
+.form-note { font-size: 0.72rem; color: var(--light); text-align: center; margin-top: 12px; line-height: 1.5; }
+
+/* ── TOAST ── */
+#toast {
+  position: fixed; bottom: 24px; right: 24px; z-index: 9999;
+  background: var(--navy); color: white;
+  padding: 14px 20px; border-radius: 2px; border-left: 3px solid var(--blue);
+  font-size: 0.85rem; font-weight: 500; max-width: 300px;
+  opacity: 0; pointer-events: none;
+  transition: opacity 0.3s;
+}
+#toast.show { opacity: 1; }
+
+/* ── FOOTER ── */
+footer {
+  background: var(--navy2);
+  border-top: 1px solid rgba(255,255,255,0.06);
+  padding: 52px 7% 32px;
+}
+.ft-inner { max-width: 1140px; margin: 0 auto; }
+.ft-top {
+  display: grid; grid-template-columns: 1.5fr 1fr 1fr 1fr; gap: 48px;
+  padding-bottom: 40px; margin-bottom: 32px;
+  border-bottom: 1px solid rgba(255,255,255,0.07);
+}
+.ft-brand {}
+.ft-logo { display: flex; align-items: center; gap: 10px; margin-bottom: 14px; }
+.ft-logo-box { width: 30px; height: 30px; background: var(--blue); display: grid; place-items: center; font-size: 0.6rem; font-weight: 800; color: white; }
+.ft-logo-text { font-size: 1rem; font-weight: 800; color: white; }
+.ft-tagline { font-size: 0.8rem; color: rgba(255,255,255,0.3); line-height: 1.6; font-weight: 300; max-width: 200px; }
+.ft-col h4 { font-size: 0.65rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(255,255,255,0.25); margin-bottom: 16px; }
+.ft-col ul { list-style: none; display: grid; gap: 10px; }
+.ft-col ul a { text-decoration: none; font-size: 0.82rem; color: rgba(255,255,255,0.45); transition: color 0.2s; font-weight: 300; }
+.ft-col ul a:hover { color: white; }
+.ft-bottom { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; }
+.ft-copy { font-size: 0.75rem; color: rgba(255,255,255,0.2); font-weight: 300; }
+.ft-copy strong { color: rgba(255,255,255,0.4); font-weight: 600; }
+
+/* ── RESPONSIVE ── */
+@media (max-width: 1024px) {
+  .hero-content { grid-template-columns: 1fr; }
+  .hero-panel { display: none; }
+  .sobre-grid { grid-template-columns: 1fr; }
+  .contato-grid { grid-template-columns: 1fr; }
+  .ft-top { grid-template-columns: 1fr 1fr; gap: 32px; }
+}
+@media (max-width: 768px) {
+  .nav-links { display: none; }
+  .nav-links.open {
+    display: flex; flex-direction: column; align-items: flex-start;
+    position: fixed; top: 68px; left: 0; right: 0;
+    background: var(--navy2); padding: 16px 24px; gap: 4px;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+  }
+  .hamburger { display: flex; }
+  .cards3 { grid-template-columns: 1fr; }
+  .reg-cards { grid-template-columns: 1fr; }
+  .atuacao { grid-template-columns: 1fr; }
+  .fg-row { grid-template-columns: 1fr; }
+  .form-box { padding: 28px 22px; }
+  .online-banner { flex-direction: column; align-items: flex-start; }
+  .tabs-header { flex-direction: column; align-items: flex-start; }
+  .ft-top { grid-template-columns: 1fr; gap: 28px; }
+  .sec { padding: 72px 5%; }
+  #hero { padding: 100px 5% 72px; }
+  .strip-inner { justify-content: flex-start; }
+}
+@media (max-width: 480px) {
+  .hero-stats { gap: 0; flex-wrap: nowrap; }
+  .hstat-num { font-size: 1.4rem; }
+  .hstat-sep { display: none; }
+}
+</style>
+</head>
+<body>
+
+<!-- ══ NAV ══ -->
+<header id="nav">
+  <a href="#" class="logo">
+    <div class="logo-box">FCV</div>
+    Gestão FCV
+  </a>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="#sobre">Sobre</a></li>
+    <li><a href="#servicos">Serviços</a></li>
+    <li><a href="#regional">Atendimento</a></li>
+    <li><a href="#contato" class="cta">Contato</a></li>
+  </ul>
+  <button class="hamburger" id="hambBtn" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</header>
+
+<!-- ══ HERO ══ -->
+<section id="hero">
+  <div class="hero-grid-bg"></div>
+  <div class="hero-glow"></div>
+  <div class="hero-glow2"></div>
+  <div class="hero-content">
+    <div>
+      <div class="hero-tag">
+        <div class="hero-tag-line"></div>
+        <span class="hero-tag-text">BPO Financeiro · Controladoria Estratégica</span>
+      </div>
+      <h1 class="hero-title">
+        Gestão FCV:<br>
+        Finanças,<br>
+        Controladoria<br>
+        e Visão.
+      </h1>
+      <p class="hero-sub">
+        Especialistas em <strong>BPO Financeiro</strong> e <strong>Controladoria Estratégica</strong>.
+        Transformamos seus dados em decisões de lucro.
+      </p>
+      <a href="#contato" class="btn-hero">
+        Agendar Diagnóstico Gratuito
+        <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ══ STRIP ══ -->
+<div class="strip">
+  <div class="strip-inner">
+    <div class="strip-item"><span>📊</span> BPO Financeiro</div>
+    <div class="strip-item"><span>📋</span> Controladoria Estratégica</div>
+    <div class="strip-item"><span>🧮</span> Gestão de Custos</div>
+    <div class="strip-item"><span>📈</span> Planejamento Orçamentário</div>
+    <div class="strip-item"><span>🔍</span> Análise Gerencial</div>
+  </div>
+</div>
+
+<!-- ══ SOBRE ══ -->
+<section id="sobre" class="sec">
+  <div class="inner">
+    <div class="sobre-grid">
+      <div>
+        <div class="sec-tag">
+          <div class="sec-tag-line"></div>
+          <span class="sec-tag-text">Sobre Nós</span>
+        </div>
+        <h2 class="sh">Referência em gestão financeira no eixo Goiás–Brasília</h2>
+        <p class="sl">A Gestão FCV alia expertise técnica e visão estratégica para entregar segurança, clareza e crescimento sustentável aos nossos clientes.</p>
+        <div class="mvv">
+          <div class="mvv-card">
+            <div class="mvv-icon">🎯</div>
+            <h3>Nossa Missão</h3>
+            <p>Manifestar a excelência e a ordem do Reino no mundo dos negócios, servindo empresários com clareza financeira e suporte estratégico, para que suas empresas prosperem sobre bases de integridade e boa mordomia.</p>
+          </div>
+          <div class="mvv-card">
+            <div class="mvv-icon">🔭</div>
+            <h3>Nossa Visão</h3>
+            <p>Ser a principal referência em gestão financeira e controladoria estratégica no eixo Goiás-Brasília até 2030.</p>
+          </div>
+          <div class="mvv-card">
+            <div class="mvv-icon">💎</div>
+            <h3>Nossos Valores</h3>
+            <div class="vtags">
+              <span class="vtag">Precisão técnica</span>
+              <span class="vtag">Integridade absoluta</span>
+              <span class="vtag">Visão de futuro</span>
+              <span class="vtag">Foco em resultados</span>
+              <span class="vtag">Excelência como Adoração</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="sobre-right">
+        <div class="sobre-imgbox">
+          <div class="sobre-logo-text">
+            <div class="sobre-logo-big">FCV</div>
+            <div class="sobre-logo-bar"></div>
+            <div class="sobre-logo-sub">Finanças · Controladoria · Visão</div>
+          </div>
+        </div>
+        <div class="atuacao">
+          <div class="atu">
+            <h4>📍 Presencial</h4>
+            <p>Atendimento consultivo especializado em Anápolis, Goiânia e Brasília.</p>
+            <div class="atu-tag">● Presencial</div>
+          </div>
+          <div class="atu">
+            <h4>🌐 Online</h4>
+            <p>Consultoria e BPO para empresas de todo o Brasil com suporte digital completo.</p>
+            <div class="atu-tag">● Nacional</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══ SERVIÇOS ══ -->
+<section id="servicos" class="sec">
+  <input type="radio" name="st" id="st1" hidden checked/>
+  <input type="radio" name="st" id="st2" hidden/>
+  <input type="radio" name="st" id="st3" hidden/>
+  <div class="inner">
+    <div class="sec-tag"><div class="sec-tag-line"></div><span class="sec-tag-text">Serviços</span></div>
+    <h2 class="sh">Soluções completas para a saúde financeira do seu negócio</h2>
+    <p class="sl" style="margin-bottom:32px">Conheça nossas áreas de atuação e como podemos transformar a gestão da sua empresa.</p>
+    <div class="stabs">
+      <label for="st1">BPO Financeiro</label>
+      <label for="st2">Controladoria</label>
+      <label for="st3">Custos</label>
+    </div>
+    <div class="spane" id="sp1">
+      <div class="servicos-grid">
+        <div class="scard"><div class="scard-num">01 · BPO Financeiro</div><h3>Gestão do Fluxo de Caixa</h3><p>Controle rigoroso de entradas e saídas, previsão de liquidez e gestão proativa do capital de giro.</p><ul class="scard-list"><li>Controle diário de caixa</li><li>Projeção de fluxo mensal</li><li>Gestão de capital de giro</li></ul></div>
+        <div class="scard"><div class="scard-num">02 · BPO Financeiro</div><h3>Contas a Pagar e Receber</h3><p>Organização e controle de obrigações financeiras, conciliação bancária e gestão de inadimplência.</p><ul class="scard-list"><li>Controle de vencimentos</li><li>Conciliação bancária</li><li>Gestão de inadimplência</li></ul></div>
+        <div class="scard"><div class="scard-num">03 · BPO Financeiro</div><h3>Relatórios Gerenciais</h3><p>Produção de DRE gerencial, balanço patrimonial e dashboards que traduzem os números em decisões.</p><ul class="scard-list"><li>DRE mensal</li><li>Balanço gerencial</li><li>Dashboard executivo</li></ul></div>
+        <div class="scard"><div class="scard-num">04 · BPO Financeiro</div><h3>Conciliação e Fechamento</h3><p>Fechamento mensal preciso com reconciliação de contas e validação de lançamentos no prazo.</p><ul class="scard-list"><li>Conciliação de contas</li><li>Validação de lançamentos</li><li>Fechamento mensal</li></ul></div>
+        <div class="scard"><div class="scard-num">05 · BPO Financeiro</div><h3>Tesouraria Estratégica</h3><p>Gestão das disponibilidades financeiras, aplicações e captações, otimizando o rendimento dos recursos.</p><ul class="scard-list"><li>Gestão de aplicações</li><li>Análise de crédito</li><li>Otimização de recursos</li></ul></div>
+        <div class="scard"><div class="scard-num">06 · BPO Financeiro</div><h3>Rotinas Financeiras</h3><p>Implantação e padronização de processos financeiros que garantem eficiência e rastreabilidade.</p><ul class="scard-list"><li>Mapeamento de processos</li><li>Implantação de ERP</li><li>Treinamento da equipe</li></ul></div>
+      </div>
+    </div>
+    <div class="spane" id="sp2">
+      <div class="servicos-grid">
+        <div class="scard"><div class="scard-num">01 · Controladoria</div><h3>Controladoria Estratégica</h3><p>Acompanhamento de KPIs com análise crítica de desvios e suporte à tomada de decisão da alta gestão.</p><ul class="scard-list"><li>Definição de KPIs</li><li>Análise de desvios</li><li>Relatórios executivos</li></ul></div>
+        <div class="scard"><div class="scard-num">02 · Controladoria</div><h3>Planejamento Orçamentário</h3><p>Construção do orçamento anual, acompanhamento versus realizado e revisões periódicas.</p><ul class="scard-list"><li>Budget anual</li><li>Forecast mensal</li><li>Análise variacional</li></ul></div>
+        <div class="scard"><div class="scard-num">03 · Controladoria</div><h3>Análise de Rentabilidade</h3><p>Identificação dos produtos, canais e clientes mais rentáveis com análise de margem de contribuição.</p><ul class="scard-list"><li>Margem por produto</li><li>Rentabilidade por cliente</li><li>Análise de canais</li></ul></div>
+        <div class="scard"><div class="scard-num">04 · Controladoria</div><h3>Business Intelligence</h3><p>Painéis de BI e análise de dados financeiros que transformam informações brutas em insights estratégicos.</p><ul class="scard-list"><li>Painéis Power BI</li><li>Análise preditiva</li><li>Indicadores em tempo real</li></ul></div>
+        <div class="scard"><div class="scard-num">05 · Controladoria</div><h3>Controles Internos</h3><p>Diagnóstico e estruturação de controles internos financeiros, reduzindo riscos e não conformidades.</p><ul class="scard-list"><li>Mapeamento de riscos</li><li>Políticas financeiras</li><li>Auditoria interna</li></ul></div>
+        <div class="scard"><div class="scard-num">06 · Controladoria</div><h3>Planejamento Estratégico</h3><p>Suporte financeiro ao planejamento estratégico com projeções de cenários e modelagem financeira.</p><ul class="scard-list"><li>Modelagem financeira</li><li>Análise de cenários</li><li>Valuation</li></ul></div>
+      </div>
+    </div>
+    <div class="spane" id="sp3">
+      <div class="servicos-grid">
+        <div class="scard"><div class="scard-num">01 · Custos</div><h3>Gestão e Análise de Custos</h3><p>Estruturação do sistema de custeio adequado ao negócio com controle de custos diretos e indiretos.</p><ul class="scard-list"><li>Custeio por absorção</li><li>Custeio variável</li><li>Custeio ABC</li></ul></div>
+        <div class="scard"><div class="scard-num">02 · Custos</div><h3>Formação de Preço de Venda</h3><p>Cálculo preciso do preço de venda com base em custos reais, margens desejadas e análise de mercado.</p><ul class="scard-list"><li>Markup estratégico</li><li>Ponto de equilíbrio</li><li>Análise de margem</li></ul></div>
+        <div class="scard"><div class="scard-num">03 · Custos</div><h3>Ponto de Equilíbrio</h3><p>Cálculo do break-even contábil, financeiro e econômico com referências claras para metas de vendas.</p><ul class="scard-list"><li>Break-even contábil</li><li>Break-even financeiro</li><li>Metas de receita</li></ul></div>
+        <div class="scard"><div class="scard-num">04 · Custos</div><h3>Redução de Custos</h3><p>Diagnóstico de ineficiências operacionais e plano estruturado de redução sem comprometer a operação.</p><ul class="scard-list"><li>Diagnóstico de desperdícios</li><li>Plano de ação</li><li>Acompanhamento de metas</li></ul></div>
+        <div class="scard"><div class="scard-num">05 · Custos</div><h3>Precificação Estratégica</h3><p>Análise estratégica de preços com base em custos, valor percebido e posicionamento competitivo.</p><ul class="scard-list"><li>Análise competitiva</li><li>Elasticidade de preço</li><li>Portfólio de produtos</li></ul></div>
+        <div class="scard"><div class="scard-num">06 · Custos</div><h3>Custos Industriais</h3><p>Controle de custos de produção, custo unitário, eficiência produtiva e gestão de estoque.</p><ul class="scard-list"><li>Custo unitário de produção</li><li>Eficiência produtiva</li><li>Gestão de estoque</li></ul></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ REGIONAL ══ -->
+<section id="regional" class="sec">
+  <div class="inner">
+    <div class="sec-tag">
+      <div class="sec-tag-line"></div>
+      <span class="sec-tag-text">Atendimento Regional</span>
+    </div>
+    <h2 class="sh">Presença onde seu negócio precisa</h2>
+    <p class="sl">Atendimento presencial especializado nas principais regiões econômicas do Centro-Oeste.</p>
+    <div class="reg-cards">
+      <div class="rcard">
+        <div class="rcard-bar"></div>
+        <h3>Anápolis</h3>
+      </div>
+      <div class="rcard">
+        <div class="rcard-bar"></div>
+        <h3>Goiânia</h3>
+      </div>
+      <div class="rcard">
+        <div class="rcard-bar"></div>
+        <h3>Brasília</h3>
+      </div>
+    </div>
+    <div class="online-banner">
+      <div class="ob-text">
+        <h3>🌐 Atendimento Online para todo o Brasil</h3>
+        <p>Consultoria e BPO Financeiro com suporte digital completo. Sua empresa, em qualquer estado, com a mesma qualidade.</p>
+      </div>
+      <a href="#contato" class="btn-wh">
+        Solicitar Atendimento
+        <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ══ CONTATO ══ -->
+<section id="contato" class="sec">
+  <div class="inner">
+    <div class="contato-grid">
+      <div class="contato-left">
+        <div class="sec-tag">
+          <div class="sec-tag-line"></div>
+          <span class="sec-tag-text">Fale Conosco</span>
+        </div>
+        <h2 class="sh">Agende seu diagnóstico financeiro gratuito</h2>
+        <p class="sl">Preencha o formulário e um especialista da Gestão FCV entrará em contato em até 24 horas úteis.</p>
+        <div class="cinfo">
+          <div class="cinfo-item">
+            <div class="cinfo-icon">✉️</div>
+            <div><div class="cinfo-lbl">E-mail</div><div class="cinfo-val">contato@gestaofcv.com.br</div></div>
+          </div>
+          <div class="cinfo-item">
+            <div class="cinfo-icon">📞</div>
+            <div><div class="cinfo-lbl">Contato</div><div class="cinfo-val">(62) 99127-1008</div></div>
+          </div>
+          <div class="cinfo-item">
+            <div class="cinfo-icon">📍</div>
+            <div><div class="cinfo-lbl">Regiões</div><div class="cinfo-val">Anápolis · Goiânia · Brasília</div></div>
+          </div>
+          <div class="cinfo-item">
+            <div class="cinfo-icon">🌐</div>
+            <div><div class="cinfo-lbl">Online</div><div class="cinfo-val">Todo o Brasil</div></div>
+          </div>
+          <div class="cinfo-item">
+            <div class="cinfo-icon">⏰</div>
+            <div><div class="cinfo-lbl">Horário</div><div class="cinfo-val">Seg–Sex, 8h às 18h</div></div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div class="form-box">
+          <h3>Enviar Mensagem</h3>
+          <form id="cf" action="https://formspree.io/f/mwvworqv" method="POST">
+            <input type="hidden" name="_subject" value="Novo contato — Gestão FCV"/>
+            <div class="fg-row">
+              <div class="fg">
+                <label for="nome">Nome completo *</label>
+                <input type="text" id="nome" name="nome" placeholder="Seu nome completo" required/>
+              </div>
+              <div class="fg">
+                <label for="empresa">Empresa</label>
+                <input type="text" id="empresa" name="empresa" placeholder="Nome da empresa"/>
+              </div>
+            </div>
+            <div class="fg-row">
+              <div class="fg">
+                <label for="email">E-mail *</label>
+                <input type="email" id="email" name="email" placeholder="seu@email.com" required/>
+              </div>
+              <div class="fg">
+                <label for="tel">WhatsApp</label>
+                <input type="tel" id="tel" name="telefone" placeholder="(62) 9 0000-0000"/>
+              </div>
+            </div>
+            <div class="fg">
+              <label for="servico">Serviço de interesse</label>
+              <select id="servico" name="servico">
+                <option value="">Selecione…</option>
+                <option>BPO Financeiro</option>
+                <option>Controladoria Estratégica</option>
+                <option>Gestão de Custos</option>
+                <option>Planejamento Orçamentário</option>
+                <option>Diagnóstico Financeiro Gratuito</option>
+                <option>Outro</option>
+              </select>
+            </div>
+            <div class="fg">
+              <label for="msg">Mensagem *</label>
+              <textarea id="msg" name="mensagem" placeholder="Descreva brevemente seu negócio e o que precisa…" required></textarea>
+            </div>
+            <button type="submit" class="btn-send" id="sendBtn">Enviar Mensagem</button>
+            <p class="form-note">Seus dados estão seguros. Nunca compartilharemos suas informações.</p>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ FOOTER ══ -->
+<footer>
+  <div class="ft-inner">
+    <div class="ft-top">
+      <div class="ft-brand">
+        <div class="ft-logo">
+          <div class="ft-logo-box">FCV</div>
+          <span class="ft-logo-text">Gestão FCV</span>
+        </div>
+        <p class="ft-tagline">Finanças, Controladoria e Visão. Especialistas em BPO Financeiro e Controladoria Estratégica.</p>
+      </div>
+      <div class="ft-col">
+        <h4>Serviços</h4>
+        <ul>
+          <li><a href="#servicos">BPO Financeiro</a></li>
+          <li><a href="#servicos">Controladoria</a></li>
+          <li><a href="#servicos">Gestão de Custos</a></li>
+          <li><a href="#servicos">Planejamento</a></li>
+        </ul>
+      </div>
+      <div class="ft-col">
+        <h4>Atendimento</h4>
+        <ul>
+          <li><a href="#regional">Anápolis – GO</a></li>
+          <li><a href="#regional">Goiânia – GO</a></li>
+          <li><a href="#regional">Brasília – DF</a></li>
+          <li><a href="#regional">Todo o Brasil</a></li>
+        </ul>
+      </div>
+      <div class="ft-col">
+        <h4>Empresa</h4>
+        <ul>
+          <li><a href="#sobre">Sobre Nós</a></li>
+          <li><a href="#sobre">Missão e Valores</a></li>
+          <li><a href="#contato">Contato</a></li>
+          <li><a href="#contato">Diagnóstico Gratuito</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="ft-bottom">
+      <p class="ft-copy">© 2025 <strong>Gestão FCV</strong> — Todos os direitos reservados.</p>
+      <p class="ft-copy">contato@gestaofcv.com.br</p>
+    </div>
+  </div>
+</footer>
+
+<div id="toast"></div>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+// Menu mobile
+const hambBtn = document.getElementById('hambBtn');
+const navLinks = document.getElementById('navLinks');
+hambBtn.addEventListener('click', () => navLinks.classList.toggle('open'));
+navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => navLinks.classList.remove('open')));
+
+
+// Tabs de serviços — lógica idêntica à v2
+document.querySelectorAll('.tab-btn').forEach(function(btn) {
+  btn.addEventListener('click', function() {
+    var tab = btn.getAttribute('data-tab');
+    document.querySelectorAll('.tab-btn').forEach(function(b) { b.classList.remove('active'); });
+    document.querySelectorAll('.servicos-content').forEach(function(c) { c.classList.remove('active'); });
+    btn.classList.add('active');
+    document.getElementById('tab-' + tab).classList.add('active');
+  });
+});
+
+
+// Formulário
+const form = document.getElementById('cf');
+const sendBtn = document.getElementById('sendBtn');
+const toast = document.getElementById('toast');
+
+function showToast(msg, ok) {
+  toast.textContent = msg;
+  toast.style.borderLeftColor = ok ? '#2563EB' : '#ef4444';
+  toast.classList.add('show');
+  setTimeout(() => toast.classList.remove('show'), 5000);
+}
+
+form.addEventListener('submit', async (e) => {
+  e.preventDefault();
+  if (!form.nome.value.trim() || !form.email.value.trim() || !form.mensagem.value.trim()) {
+    showToast('⚠️ Preencha os campos obrigatórios.', false);
+    return;
+  }
+  sen
