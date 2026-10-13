@@ -249,12 +249,10 @@ p.sl {
 .stabs label:hover { color: var(--navy); background: rgba(0,0,0,0.05); }
 /* Active tab highlight */
 section#servicos:has(#st1:checked) .stabs label[for="st1"],
-section#servicos:has(#st2:checked) .stabs label[for="st2"],
-section#servicos:has(#st3:checked) .stabs label[for="st3"] { background: var(--navy); color: white; }
+section#servicos:has(#st2:checked) .stabs label[for="st2"] { background: var(--navy); color: white; }
 /* Show correct panel */
 section#servicos:has(#st1:checked) #sp1,
-section#servicos:has(#st2:checked) #sp2,
-section#servicos:has(#st3:checked) #sp3 { display: block; }
+section#servicos:has(#st2:checked) #sp2 { display: block; }
 .servicos-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 2px; }
 .scard {
   background: white; padding: 36px 30px;
@@ -471,7 +469,7 @@ footer {
     <div>
       <div class="hero-tag">
         <div class="hero-tag-line"></div>
-        <span class="hero-tag-text">BPO Financeiro · Controladoria Estratégica</span>
+        <span class="hero-tag-text">Controladoria Estratégica · Gestão de Custos</span>
       </div>
       <h1 class="hero-title">
         Gestão FCV:<br>
@@ -480,7 +478,7 @@ footer {
         e Visão.
       </h1>
       <p class="hero-sub">
-        Especialistas em <strong>BPO Financeiro</strong> e <strong>Controladoria Estratégica</strong>.
+        Especialistas em <strong>Controladoria Estratégica</strong> e <strong>Gestão de Custos</strong>.
         Transformamos seus dados em decisões de lucro.
       </p>
       <a href="#contato" class="btn-hero">
@@ -494,7 +492,6 @@ footer {
 <!-- ══ STRIP ══ -->
 <div class="strip">
   <div class="strip-inner">
-    <div class="strip-item"><span>📊</span> BPO Financeiro</div>
     <div class="strip-item"><span>📋</span> Controladoria Estratégica</div>
     <div class="strip-item"><span>🧮</span> Gestão de Custos</div>
     <div class="strip-item"><span>📈</span> Planejamento Orçamentário</div>
@@ -553,7 +550,7 @@ footer {
           </div>
           <div class="atu">
             <h4>🌐 Online</h4>
-            <p>Consultoria e BPO para empresas de todo o Brasil com suporte digital completo.</p>
+            <p>Consultoria em Controladoria e Custos para empresas de todo o Brasil com suporte digital completo.</p>
             <div class="atu-tag">● Nacional</div>
           </div>
         </div>
@@ -567,27 +564,15 @@ footer {
 <section id="servicos" class="sec">
   <input type="radio" name="st" id="st1" hidden checked/>
   <input type="radio" name="st" id="st2" hidden/>
-  <input type="radio" name="st" id="st3" hidden/>
   <div class="inner">
     <div class="sec-tag"><div class="sec-tag-line"></div><span class="sec-tag-text">Serviços</span></div>
     <h2 class="sh">Soluções completas para a saúde financeira do seu negócio</h2>
     <p class="sl" style="margin-bottom:32px">Conheça nossas áreas de atuação e como podemos transformar a gestão da sua empresa.</p>
     <div class="stabs">
-      <label for="st1">BPO Financeiro</label>
-      <label for="st2">Controladoria</label>
-      <label for="st3">Custos</label>
+      <label for="st1">Controladoria</label>
+      <label for="st2">Custos</label>
     </div>
     <div class="spane" id="sp1">
-      <div class="servicos-grid">
-        <div class="scard"><div class="scard-num">01 · BPO Financeiro</div><h3>Gestão do Fluxo de Caixa</h3><p>Controle rigoroso de entradas e saídas, previsão de liquidez e gestão proativa do capital de giro.</p><ul class="scard-list"><li>Controle diário de caixa</li><li>Projeção de fluxo mensal</li><li>Gestão de capital de giro</li></ul></div>
-        <div class="scard"><div class="scard-num">02 · BPO Financeiro</div><h3>Contas a Pagar e Receber</h3><p>Organização e controle de obrigações financeiras, conciliação bancária e gestão de inadimplência.</p><ul class="scard-list"><li>Controle de vencimentos</li><li>Conciliação bancária</li><li>Gestão de inadimplência</li></ul></div>
-        <div class="scard"><div class="scard-num">03 · BPO Financeiro</div><h3>Relatórios Gerenciais</h3><p>Produção de DRE gerencial, balanço patrimonial e dashboards que traduzem os números em decisões.</p><ul class="scard-list"><li>DRE mensal</li><li>Balanço gerencial</li><li>Dashboard executivo</li></ul></div>
-        <div class="scard"><div class="scard-num">04 · BPO Financeiro</div><h3>Conciliação e Fechamento</h3><p>Fechamento mensal preciso com reconciliação de contas e validação de lançamentos no prazo.</p><ul class="scard-list"><li>Conciliação de contas</li><li>Validação de lançamentos</li><li>Fechamento mensal</li></ul></div>
-        <div class="scard"><div class="scard-num">05 · BPO Financeiro</div><h3>Tesouraria Estratégica</h3><p>Gestão das disponibilidades financeiras, aplicações e captações, otimizando o rendimento dos recursos.</p><ul class="scard-list"><li>Gestão de aplicações</li><li>Análise de crédito</li><li>Otimização de recursos</li></ul></div>
-        <div class="scard"><div class="scard-num">06 · BPO Financeiro</div><h3>Rotinas Financeiras</h3><p>Implantação e padronização de processos financeiros que garantem eficiência e rastreabilidade.</p><ul class="scard-list"><li>Mapeamento de processos</li><li>Implantação de ERP</li><li>Treinamento da equipe</li></ul></div>
-      </div>
-    </div>
-    <div class="spane" id="sp2">
       <div class="servicos-grid">
         <div class="scard"><div class="scard-num">01 · Controladoria</div><h3>Controladoria Estratégica</h3><p>Acompanhamento de KPIs com análise crítica de desvios e suporte à tomada de decisão da alta gestão.</p><ul class="scard-list"><li>Definição de KPIs</li><li>Análise de desvios</li><li>Relatórios executivos</li></ul></div>
         <div class="scard"><div class="scard-num">02 · Controladoria</div><h3>Planejamento Orçamentário</h3><p>Construção do orçamento anual, acompanhamento versus realizado e revisões periódicas.</p><ul class="scard-list"><li>Budget anual</li><li>Forecast mensal</li><li>Análise variacional</li></ul></div>
@@ -597,7 +582,7 @@ footer {
         <div class="scard"><div class="scard-num">06 · Controladoria</div><h3>Planejamento Estratégico</h3><p>Suporte financeiro ao planejamento estratégico com projeções de cenários e modelagem financeira.</p><ul class="scard-list"><li>Modelagem financeira</li><li>Análise de cenários</li><li>Valuation</li></ul></div>
       </div>
     </div>
-    <div class="spane" id="sp3">
+    <div class="spane" id="sp2">
       <div class="servicos-grid">
         <div class="scard"><div class="scard-num">01 · Custos</div><h3>Gestão e Análise de Custos</h3><p>Estruturação do sistema de custeio adequado ao negócio com controle de custos diretos e indiretos.</p><ul class="scard-list"><li>Custeio por absorção</li><li>Custeio variável</li><li>Custeio ABC</li></ul></div>
         <div class="scard"><div class="scard-num">02 · Custos</div><h3>Formação de Preço de Venda</h3><p>Cálculo preciso do preço de venda com base em custos reais, margens desejadas e análise de mercado.</p><ul class="scard-list"><li>Markup estratégico</li><li>Ponto de equilíbrio</li><li>Análise de margem</li></ul></div>
@@ -636,7 +621,7 @@ footer {
     <div class="online-banner">
       <div class="ob-text">
         <h3>🌐 Atendimento Online para todo o Brasil</h3>
-        <p>Consultoria e BPO Financeiro com suporte digital completo. Sua empresa, em qualquer estado, com a mesma qualidade.</p>
+        <p>Consultoria em Controladoria e Gestão de Custos com suporte digital completo. Sua empresa, em qualquer estado, com a mesma qualidade.</p>
       </div>
       <a href="#contato" class="btn-wh">
         Solicitar Atendimento
@@ -709,7 +694,6 @@ footer {
               <label for="servico">Serviço de interesse</label>
               <select id="servico" name="servico">
                 <option value="">Selecione…</option>
-                <option>BPO Financeiro</option>
                 <option>Controladoria Estratégica</option>
                 <option>Gestão de Custos</option>
                 <option>Planejamento Orçamentário</option>
@@ -739,12 +723,11 @@ footer {
           <div class="ft-logo-box">FCV</div>
           <span class="ft-logo-text">Gestão FCV</span>
         </div>
-        <p class="ft-tagline">Finanças, Controladoria e Visão. Especialistas em BPO Financeiro e Controladoria Estratégica.</p>
+        <p class="ft-tagline">Finanças, Controladoria e Visão. Especialistas em Controladoria Estratégica e Gestão de Custos.</p>
       </div>
       <div class="ft-col">
         <h4>Serviços</h4>
         <ul>
-          <li><a href="#servicos">BPO Financeiro</a></li>
           <li><a href="#servicos">Controladoria</a></li>
           <li><a href="#servicos">Gestão de Custos</a></li>
           <li><a href="#servicos">Planejamento</a></li>
@@ -807,4 +790,3 @@ document.querySelectorAll('.tab-btn').forEach(function(btn) {
   btn.addEventListener('click', function() {
     var tab = btn.getAttribute('data-tab');
     document.querySelectorAll('.tab-btn').forEach(function(b) { b.classList.remove('active'); });
-    
