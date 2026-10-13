@@ -162,6 +162,70 @@ body {
 .dot { width: 7px; height: 7px; background: #4ade80; border-radius: 50%; animation: blink 2s infinite; }
 @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0.4} }
 
+/* ── DIAGNÓSTICO ── */
+#diagnostico {
+  background: var(--navy2);
+  padding: 80px 7%;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+#diagnostico .inner { max-width: 1140px; margin: 0 auto; }
+.diag-header { text-align: center; margin-bottom: 56px; }
+.diag-header h2 {
+  font-size: clamp(1.6rem, 2.4vw, 2.2rem);
+  font-weight: 800; color: white; letter-spacing: -0.02em; line-height: 1.2;
+  margin-bottom: 14px;
+}
+.diag-header p {
+  font-size: 0.95rem; color: rgba(255,255,255,0.4); font-weight: 300; line-height: 1.8;
+}
+.diag-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px;
+  margin-bottom: 40px;
+}
+.dcard {
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.07);
+  border-top: 3px solid var(--blue);
+  padding: 32px 28px;
+  transition: background 0.25s, border-color 0.25s;
+}
+.dcard:hover { background: rgba(255,255,255,0.06); border-color: rgba(37,99,235,0.6); }
+.dcard-icon { font-size: 1.6rem; margin-bottom: 18px; }
+.dcard-q {
+  font-size: 1.05rem; font-weight: 700; color: white;
+  line-height: 1.35; margin-bottom: 12px;
+}
+.dcard-p {
+  font-size: 0.82rem; color: rgba(255,255,255,0.35);
+  line-height: 1.7; font-weight: 300;
+}
+.dcard-alert {
+  display: inline-flex; align-items: center; gap: 6px;
+  margin-top: 16px;
+  font-size: 0.7rem; font-weight: 700; letter-spacing: 0.06em;
+  color: #f87171; text-transform: uppercase;
+}
+.diag-cta {
+  text-align: center;
+  background: rgba(30,79,168,0.15);
+  border: 1px solid rgba(30,79,168,0.3);
+  padding: 36px 40px;
+}
+.diag-cta p {
+  font-size: 1.1rem; font-weight: 700; color: white; margin-bottom: 20px; line-height: 1.4;
+}
+.diag-cta a {
+  display: inline-flex; align-items: center; gap: 10px;
+  background: var(--blue); color: white;
+  padding: 14px 32px; border-radius: 2px;
+  font-family: 'Manrope', sans-serif; font-size: 0.82rem; font-weight: 700;
+  letter-spacing: 0.07em; text-transform: uppercase; text-decoration: none;
+  transition: background 0.2s;
+}
+.diag-cta a:hover { background: var(--blue2); }
+@media (max-width: 1024px) { .diag-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 600px) { .diag-grid { grid-template-columns: 1fr; } .diag-cta { padding: 28px 20px; } }
+
 /* ── STRIP ── */
 .strip {
   background: var(--navy2);
@@ -451,6 +515,7 @@ footer {
   </a>
   <ul class="nav-links" id="navLinks">
     <li><a href="#sobre">Sobre</a></li>
+    <li><a href="#diagnostico">Diagnóstico</a></li>
     <li><a href="#servicos">Serviços</a></li>
     <li><a href="#regional">Atendimento</a></li>
     <li><a href="#contato" class="cta">Contato</a></li>
@@ -483,6 +548,61 @@ footer {
       </p>
       <a href="#contato" class="btn-hero">
         Agendar Diagnóstico Gratuito
+        <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ══ DIAGNÓSTICO ══ -->
+<section id="diagnostico">
+  <div class="inner">
+    <div class="diag-header">
+      <h2>Seu negócio está crescendo — mas você sabe para onde o dinheiro está indo?</h2>
+      <p>Responda mentalmente às perguntas abaixo. Cada "não sei" é um risco silencioso na sua empresa.</p>
+    </div>
+    <div class="diag-grid">
+      <div class="dcard">
+        <div class="dcard-icon">💰</div>
+        <div class="dcard-q">Você sabe qual é a sua margem de contribuição real?</div>
+        <p class="dcard-p">Não o faturamento — a margem por produto, por linha, por cliente. Quantos empresários faturam bem e sobra pouco no fim do mês sem entender o porquê.</p>
+        <div class="dcard-alert">⚠ Sem isso, você precifica no escuro</div>
+      </div>
+      <div class="dcard">
+        <div class="dcard-icon">🏷️</div>
+        <div class="dcard-q">Você consegue precificar seus produtos ou serviços com segurança?</div>
+        <p class="dcard-p">Preço baseado em intuição ou no concorrente é uma das principais causas de descapitalização. Já aconteceu de vender muito e não ter caixa?</p>
+        <div class="dcard-alert">⚠ Preço errado corrói o lucro</div>
+      </div>
+      <div class="dcard">
+        <div class="dcard-icon">📊</div>
+        <div class="dcard-q">Você sabe qual produto ou serviço te dá mais lucro — e qual te dá prejuízo?</div>
+        <p class="dcard-p">Muitos empresários descobrem tarde que estavam trabalhando duro para sustentar produtos que consomem mais do que geram. A análise de custos revela isso.</p>
+        <div class="dcard-alert">⚠ Nem todo produto vale a pena vender</div>
+      </div>
+      <div class="dcard">
+        <div class="dcard-icon">📉</div>
+        <div class="dcard-q">Quando os custos sobem, você sabe exatamente onde cortar sem travar a operação?</div>
+        <p class="dcard-p">Cortar às cegas é perigoso. Redução de custos eficiente exige mapeamento detalhado — saber o que é custo fixo, variável, direto e indireto de cada área.</p>
+        <div class="dcard-alert">⚠ Corte errado quebra a empresa</div>
+      </div>
+      <div class="dcard">
+        <div class="dcard-icon">🎯</div>
+        <div class="dcard-q">Suas metas de venda foram calculadas com base no seu ponto de equilíbrio?</div>
+        <p class="dcard-p">Sem saber o break-even, qualquer meta é chute. Você pode bater a meta de vendas e ainda assim fechar o mês no vermelho.</p>
+        <div class="dcard-alert">⚠ Meta sem base é ilusão</div>
+      </div>
+      <div class="dcard">
+        <div class="dcard-icon">📋</div>
+        <div class="dcard-q">Você tem relatórios que te mostram a saúde financeira da empresa em tempo real?</div>
+        <p class="dcard-p">DRE gerencial, análise de variação, indicadores de resultado — ou você só descobre como foi o mês quando o contador entrega o balanço fiscal?</p>
+        <div class="dcard-alert">⚠ Decisão sem dado é risco</div>
+      </div>
+    </div>
+    <div class="diag-cta">
+      <p>Se alguma dessas perguntas te deixou desconfortável — é exatamente aí que a Gestão FCV atua.</p>
+      <a href="#contato">
+        Quero clareza financeira no meu negócio
         <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
       </a>
     </div>
